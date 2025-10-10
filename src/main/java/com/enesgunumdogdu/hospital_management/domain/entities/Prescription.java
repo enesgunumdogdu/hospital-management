@@ -10,21 +10,21 @@ public class Prescription {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "examination_id", nullable = false)
     private Examination examination;
 
-    private String pillName;
-    private String dose;
+    private String medicationName;
+    private String dosage;
     private String description;
 
     public Prescription() {}
 
-    public Prescription(Long id, Examination examination, String pillName, String dose, String description) {
+    public Prescription(Long id, Examination examination, String medicationName, String dosage, String description) {
         this.id = id;
         this.examination = examination;
-        this.pillName = pillName;
-        this.dose = dose;
+        this.medicationName = medicationName;
+        this.dosage = dosage;
         this.description = description;
     }
 
@@ -44,20 +44,20 @@ public class Prescription {
         this.examination = examination;
     }
 
-    public String getPillName() {
-        return pillName;
+    public String getMedicationName() {
+        return medicationName;
     }
 
-    public void setPillName(String pillName) {
-        this.pillName = pillName;
+    public void setMedicationName(String medicationName) {
+        this.medicationName = medicationName;
     }
 
-    public String getDose() {
-        return dose;
+    public String getDosage() {
+        return dosage;
     }
 
-    public void setDose(String dose) {
-        this.dose = dose;
+    public void setDosage(String dosage) {
+        this.dosage = dosage;
     }
 
     public String getDescription() {

@@ -12,27 +12,27 @@ public class Examination {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "doctor_id", nullable = false)
     private Doctor doctor;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "patient_id", nullable = false)
     private Patient patient;
 
-    private LocalDateTime date;
+    private LocalDateTime examinationDate;
     private String diagnosis;
 
-    @OneToOne(mappedBy = "examination", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "examination", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Prescription prescription;
 
     public Examination() {}
 
-    public Examination(Long id, Doctor doctor, Patient patient, LocalDateTime date, String diagnosis) {
+    public Examination(Long id, Doctor doctor, Patient patient, LocalDateTime examinationDate, String diagnosis) {
         this.id = id;
         this.doctor = doctor;
         this.patient = patient;
-        this.date = date;
+        this.examinationDate = examinationDate;
         this.diagnosis = diagnosis;
     }
 
@@ -60,12 +60,12 @@ public class Examination {
         this.patient = patient;
     }
 
-    public LocalDateTime getDate() {
-        return date;
+    public LocalDateTime getExaminationDate() {
+        return examinationDate;
     }
 
-    public void setDate(LocalDateTime date) {
-        this.date = date;
+    public void setExaminationDate(LocalDateTime examinationDate) {
+        this.examinationDate = examinationDate;
     }
 
     public String getDiagnosis() {

@@ -1,7 +1,6 @@
 package com.enesgunumdogdu.hospital_management.domain.entities;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -11,16 +10,16 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstAndLastName;
+    private String firstNameAndLastName;
     private String identityNumber;
     private LocalDate birthDate;
     private String phoneNumber;
 
     public Patient() {}
 
-    public Patient(Long id, String firstAndLastName, String identityNumber, LocalDate birthDate, String phoneNumber) {
+    public Patient(Long id, String firstNameAndLastName, String identityNumber, LocalDate birthDate, String phoneNumber) {
         this.id = id;
-        this.firstAndLastName = firstAndLastName;
+        this.firstNameAndLastName = firstNameAndLastName;
         this.identityNumber = identityNumber;
         this.birthDate = birthDate;
         this.phoneNumber = phoneNumber;
@@ -34,12 +33,12 @@ public class Patient {
         this.id = id;
     }
 
-    public String getFirstAndLastName() {
-        return firstAndLastName;
+    public String getFirstNameAndLastName() {
+        return firstNameAndLastName;
     }
 
-    public void setFirstAndLastName(String firstAndLastName) {
-        this.firstAndLastName = firstAndLastName;
+    public void setFirstNameAndLastName(String firstNameAndLastName) {
+        this.firstNameAndLastName = firstNameAndLastName;
     }
 
     public String getIdentityNumber() {

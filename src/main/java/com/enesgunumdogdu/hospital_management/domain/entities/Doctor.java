@@ -2,7 +2,6 @@ package com.enesgunumdogdu.hospital_management.domain.entities;
 
 import jakarta.persistence.*;
 
-import java.util.UUID;
 
 @Entity
 @Table(name = "doctors")
@@ -11,16 +10,16 @@ public class Doctor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String firstAndLastName;
-    private String speciality;
+    private String firstNameAndLastName;
+    private String specialty;
     private String phoneNumber;
 
     public Doctor() {}
 
-    public Doctor(Long id, String firstAndLastName, String speciality, String phoneNumber) {
+    public Doctor(Long id, String firstNameAndLastName, String specialty, String phoneNumber) {
         this.id = id;
-        this.firstAndLastName = firstAndLastName;
-        this.speciality = speciality;
+        this.firstNameAndLastName = firstNameAndLastName;
+        this.specialty = specialty;
         this.phoneNumber = phoneNumber;
     }
 
@@ -32,20 +31,20 @@ public class Doctor {
         this.id = id;
     }
 
-    public String getFirstAndLastName() {
-        return firstAndLastName;
+    public String getFirstNameAndLastName() {
+        return firstNameAndLastName;
     }
 
-    public void setFirstAndLastName(String firstAndLastName) {
-        this.firstAndLastName = firstAndLastName;
+    public void setFirstNameAndLastName(String firstNameAndLastName) {
+        this.firstNameAndLastName = firstNameAndLastName;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public String getSpecialty() {
+        return specialty;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setSpecialty(String specialty) {
+        this.specialty = specialty;
     }
 
     public String getPhoneNumber() {
