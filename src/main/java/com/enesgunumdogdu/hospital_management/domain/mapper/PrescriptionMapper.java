@@ -10,6 +10,7 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface PrescriptionMapper {
     
+    @Mapping(source = "examination.id", target = "examinationId")
     PrescriptionDto toDto(Prescription prescription);
     
     @Mapping(target = "examination", ignore = true)

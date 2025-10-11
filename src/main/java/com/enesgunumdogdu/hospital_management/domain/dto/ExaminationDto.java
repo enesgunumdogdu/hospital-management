@@ -8,17 +8,15 @@ public class ExaminationDto {
     private PatientDto patient;
     private LocalDateTime examinationDate;
     private String diagnosis;
-    private PrescriptionDto prescription;
 
     public ExaminationDto() {}
 
-    public ExaminationDto(Long id, DoctorDto doctor, PatientDto patient, LocalDateTime examinationDate, String diagnosis, PrescriptionDto prescription) {
+    public ExaminationDto(Long id, DoctorDto doctor, PatientDto patient, LocalDateTime examinationDate, String diagnosis) {
         this.id = id;
         this.doctor = doctor;
         this.patient = patient;
         this.examinationDate = examinationDate;
         this.diagnosis = diagnosis;
-        this.prescription = prescription;
     }
 
     public Long getId() {
@@ -59,13 +57,5 @@ public class ExaminationDto {
 
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
-    }
-
-    public PrescriptionDto getPrescription() {
-        return prescription;
-    }
-
-    public void setPrescription(PrescriptionDto prescription) {
-        this.prescription = prescription;
     }
 }

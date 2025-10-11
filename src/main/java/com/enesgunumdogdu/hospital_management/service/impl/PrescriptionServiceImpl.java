@@ -1,8 +1,10 @@
 package com.enesgunumdogdu.hospital_management.service.impl;
 
 import com.enesgunumdogdu.hospital_management.domain.dto.PrescriptionDto;
+import com.enesgunumdogdu.hospital_management.domain.entities.Examination;
 import com.enesgunumdogdu.hospital_management.domain.entities.Prescription;
 import com.enesgunumdogdu.hospital_management.domain.mapper.PrescriptionMapper;
+import com.enesgunumdogdu.hospital_management.repository.ExaminationRepository;
 import com.enesgunumdogdu.hospital_management.repository.PrescriptionRepository;
 import com.enesgunumdogdu.hospital_management.service.PrescriptionService;
 import org.springframework.stereotype.Service;
@@ -14,11 +16,14 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
     private final PrescriptionRepository prescriptionRepository;
     private final PrescriptionMapper prescriptionMapper;
+    private final ExaminationRepository examinationRepository;
 
     public PrescriptionServiceImpl(PrescriptionRepository prescriptionRepository, 
-                                   PrescriptionMapper prescriptionMapper) {
+                                   PrescriptionMapper prescriptionMapper,
+                                   ExaminationRepository examinationRepository) {
         this.prescriptionRepository = prescriptionRepository;
         this.prescriptionMapper = prescriptionMapper;
+        this.examinationRepository = examinationRepository;
     }
 
     @Override
@@ -36,7 +41,12 @@ public class PrescriptionServiceImpl implements PrescriptionService {
 
     @Override
     public PrescriptionDto createPrescription(PrescriptionDto prescriptionDto) {
+        Examination examination = examinationRepository.findById(prescriptionDto.getExaminationId())
+                .orElseThrow(() -> new RuntimeException("Examination not found with id: " + prescriptionDto.getExaminationId()));
+        
         Prescription prescription = prescriptionMapper.toEntity(prescriptionDto);
+        prescription.setExamination(examination);
+        
         Prescription savedPrescription = prescriptionRepository.save(prescription);
         return prescriptionMapper.toDto(savedPrescription);
     }
@@ -46,6 +56,10 @@ public class PrescriptionServiceImpl implements PrescriptionService {
         Prescription existingPrescription = prescriptionRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Prescription not found with id: " + id));
         
+        Examination examination = examinationRepository.findById(prescriptionDto.getExaminationId())
+                .orElseThrow(() -> new RuntimeException("Examination not found with id: " + prescriptionDto.getExaminationId()));
+        
+        existingPrescription.setExamination(examination);
         existingPrescription.setMedicationName(prescriptionDto.getMedicationName());
         existingPrescription.setDosage(prescriptionDto.getDosage());
         existingPrescription.setDescription(prescriptionDto.getDescription());

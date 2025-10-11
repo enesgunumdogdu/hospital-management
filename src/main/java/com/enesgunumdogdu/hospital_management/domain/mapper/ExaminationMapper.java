@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {DoctorMapper.class, PatientMapper.class, PrescriptionMapper.class})
+@Mapper(componentModel = "spring", uses = {DoctorMapper.class, PatientMapper.class})
 public interface ExaminationMapper {
     
     ExaminationDto toDto(Examination examination);

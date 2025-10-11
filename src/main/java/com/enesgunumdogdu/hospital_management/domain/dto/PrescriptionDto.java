@@ -2,16 +2,16 @@ package com.enesgunumdogdu.hospital_management.domain.dto;
 
 public class PrescriptionDto {
     private Long id;
-    private ExaminationDto examination;
+    private Long examinationId;
     private String medicationName;
     private String dosage;
     private String description;
 
     public PrescriptionDto() {}
 
-    public PrescriptionDto(Long id, ExaminationDto examination, String medicationName, String dosage, String description) {
+    public PrescriptionDto(Long id, Long examinationId, String medicationName, String dosage, String description) {
         this.id = id;
-        this.examination = examination;
+        this.examinationId = examinationId;
         this.medicationName = medicationName;
         this.dosage = dosage;
         this.description = description;
@@ -49,11 +49,11 @@ public class PrescriptionDto {
         this.description = description;
     }
 
-    public ExaminationDto getExamination() {
-        return examination;
+    public Long getExaminationId() {
+        return examinationId;
     }
 
-    public void setExamination(ExaminationDto examination) {
-        this.examination = examination;
+    public void setExaminationId(Long examinationId) {
+        this.examinationId = examinationId;
     }
 }
