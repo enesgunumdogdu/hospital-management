@@ -1,11 +1,15 @@
 <script>
 import DoctorList from './views/DoctorList.vue'
 import PatientList from './views/PatientList.vue'
+import ExaminationList from './views/ExaminationList.vue'
+import PrescriptionList from './views/PrescriptionList.vue'
 
 export default {
   components: {
     DoctorList,
-    PatientList
+    PatientList,
+    ExaminationList,
+    PrescriptionList
   },
   
   data() {
@@ -39,12 +43,26 @@ export default {
         >
           Patients
         </button>
+        <button 
+          @click="showView('examinations')" 
+          :class="{ active: currentView === 'examinations' }"
+        >
+          Examinations
+        </button>
+        <button 
+          @click="showView('prescriptions')" 
+          :class="{ active: currentView === 'prescriptions' }"
+        >
+          Prescriptions
+        </button>
       </nav>
     </header>
     
     <main>
       <DoctorList v-if="currentView === 'doctors'" />
       <PatientList v-if="currentView === 'patients'" />
+      <ExaminationList v-if="currentView === 'examinations'" />
+      <PrescriptionList v-if="currentView === 'prescriptions'" />
     </main>
   </div>
 </template>
