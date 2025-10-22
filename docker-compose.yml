@@ -2,12 +2,10 @@ services:
   db:
     image: postgres:latest
     ports:
-      - "${DB_PORT}:5432"
+      -"5432:5432"
     restart: always
     environment:
-      POSTGRES_DB: ${DB_NAME}
-      POSTGRES_USER: ${DB_USERNAME}
-      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_PASSWORD: changemeinprod!
 
   pgadmin:
     image: dpage/pgadmin4
