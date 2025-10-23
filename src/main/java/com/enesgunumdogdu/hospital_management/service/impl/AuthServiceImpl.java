@@ -4,6 +4,7 @@ import com.enesgunumdogdu.hospital_management.domain.dto.AuthRequest;
 import com.enesgunumdogdu.hospital_management.domain.dto.AuthResponse;
 import com.enesgunumdogdu.hospital_management.domain.dto.RegisterRequest;
 import com.enesgunumdogdu.hospital_management.domain.entities.User;
+import com.enesgunumdogdu.hospital_management.exception.DuplicateResourceException;
 import com.enesgunumdogdu.hospital_management.repository.UserRepository;
 import com.enesgunumdogdu.hospital_management.security.JwtUtil;
 import com.enesgunumdogdu.hospital_management.service.AuthService;
@@ -32,11 +33,11 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponse register(RegisterRequest request) {
         if (userRepository.existsByUsername(request.getUsername())) {
-            throw new RuntimeException("Username already exists");
+            throw new DuplicateResourceException("Username already exists");
         }
         
         if (userRepository.existsByEmail(request.getEmail())) {
-            throw new RuntimeException("Email already exists");
+            throw new DuplicateResourceException("Email already exists");
         }
 
         User user = new User();
