@@ -34,3 +34,6 @@ build/
 
 ### Environment Variables ###
 .env
+
+### Application Properties with Sensitive Data ###
+src/main/resources/application.properties
